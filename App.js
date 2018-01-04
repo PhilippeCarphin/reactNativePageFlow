@@ -56,19 +56,19 @@ export default class App extends Component<{}> {
 
   _renderPersonRow(person) {
     return (
-      <View style={styles.personRow}>
+      <ChevronListItem>
         <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
           <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
           <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
         </View>
-        <Icon name='chevron-right' size={30} style={styles.personMoreIcon}/>
-      </View>
+      </ChevronListItem>
     )
   }
 }
 
-chevronListItem = ({children}) => (
+ChevronListItem = ({children}) => (
   <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    {children}
     <Icon name='chevron-right' size={30} style={styles.personMoreIcon}/>
   </View>
 )
