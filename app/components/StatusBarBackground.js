@@ -6,10 +6,17 @@ class StatusBarBackground extends Component {
 
   render() {
     return (
-      <View style={{ height: 20, backgroundColor: "green" }}>
+      <View style={[ styles.default, this.props.style || {} ]}>
       </View>
     );
   };
 };
+
+const styles = {
+  default : {
+    height: 20,
+    backgroundColor: "green"
+  }
+}
 
 export default StatusBarBackground;

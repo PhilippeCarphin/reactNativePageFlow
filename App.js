@@ -25,7 +25,7 @@ export default class App extends Component<{}> {
   render() {
     return (
       <ViewContainer>
-        <StatusBarBackground />
+        <StatusBarBackground style={{backgroundColor: "blue"}}/>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
