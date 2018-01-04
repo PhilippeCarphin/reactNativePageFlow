@@ -9,7 +9,8 @@ import {
   Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 import ViewContainer from './app/components/ViewContainer';
 import StatusBarBackground from './app/components/StatusBarBackground';
@@ -21,40 +22,53 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
+const people = [
+  {firstName: "Phil", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Ginette", lastName: 'Renaud', roomNumber: 1 }
+]
+
 export default class App extends Component<{}> {
+  constructor(props) {
+    super(props)
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2});
+    this.state = {
+      peopleDataSource: ds.cloneWithRows(people)
+    }
+  }
+
   render() {
     return (
       <ViewContainer>
         <StatusBarBackground style={{backgroundColor: "blue"}}/>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+        <ListView
+          style={{marginTop: 100}}
+          dataSource={this.state.peopleDataSource}
+          renderRow={(person) => { return this._renderPersonRow(person)}} />
       </ViewContainer>
     );
+  }
+
+  _renderPersonRow(person) {
+    return (
+      <View style={styles.personRow}>
+        <Text style={styles.firstName}>{person.firstName} </Text>
+        <Text style={styles.lastName}>{person.lastName}</Text>
+      </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+  personRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-end'
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  firstName: {
+    fontSize: 18
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  lastName: {
+    fontSize: 21
+  }
 });
