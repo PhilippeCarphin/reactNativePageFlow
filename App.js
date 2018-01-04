@@ -15,6 +15,9 @@ import {
 import ViewContainer from './app/components/ViewContainer';
 import StatusBarBackground from './app/components/StatusBarBackground';
 import _ from 'lodash'
+// DId this after npm installing
+// react-native link react-native-vector-icons
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -54,19 +57,34 @@ export default class App extends Component<{}> {
   _renderPersonRow(person) {
     return (
       <View style={styles.personRow}>
-        <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
-        <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+          <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
+          <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
+        </View>
+        <Icon name='chevron-right' size={30} style={styles.personMoreIcon}/>
       </View>
     )
   }
 }
 
+chevronListItem = ({children}) => (
+  <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+    <Icon name='chevron-right' size={30} style={styles.personMoreIcon}/>
+  </View>
+)
+
 const styles = StyleSheet.create({
   personRow: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'flex-end'
   },
-  firstName: {
+  personMoreIcon: {
+    color: "green",
+    height: 30,
+    width: 30
+  },
+  perstName: {
     fontSize: 18
   },
   lastName: {
