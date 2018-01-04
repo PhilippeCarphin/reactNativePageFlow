@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import ViewContainer from './app/components/ViewContainer';
 import StatusBarBackground from './app/components/StatusBarBackground';
+import _ from 'lodash'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,10 +24,10 @@ const instructions = Platform.select({
 });
 
 const people = [
-  {firstName: "Phil", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
   {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
   {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
-  {firstName: "Ginette", lastName: 'Renaud', roomNumber: 1 }
+  {firstName: "ginette", lastName: 'Renaud', roomNumber: 1 }
 ]
 
 export default class App extends Component<{}> {
@@ -53,8 +54,8 @@ export default class App extends Component<{}> {
   _renderPersonRow(person) {
     return (
       <View style={styles.personRow}>
-        <Text style={styles.firstName}>{person.firstName} </Text>
-        <Text style={styles.lastName}>{person.lastName}</Text>
+        <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
+        <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
       </View>
     )
   }
