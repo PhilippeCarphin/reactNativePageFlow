@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react';
-import { Navigator } from 'react-native'
+import { NavigatorIOS } from 'react-native'
 import PeopleIndexScreen from './app/screens/PeopleIndexScreen';
 
 export default class App extends Component<{}> {
@@ -22,7 +22,13 @@ export default class App extends Component<{}> {
     }
   }
   render() {
-    return this._renderScene({ident: "PeopleIndex"}, {})
+    return (
+      <NavigatorIOS
+        initialRoute={{component: PeopleIndexScreen, title: 'My Initial State', passProps: {index: 1} }}
+        ref="appNavigator"
+        style={{flex: 1}}
+        renderScene={this._renderScene} />
+    )
   }
 }
 
