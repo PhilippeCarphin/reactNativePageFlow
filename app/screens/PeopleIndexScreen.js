@@ -67,7 +67,6 @@ export default class PeopleIndexScreen extends Component<{}> {
   render() {
     return (
       <ViewContainer>
-        <StatusBarBackground style={{backgroundColor: "blue"}}/>
         <ListView
           style={styles.listViewStyle}
           dataSource={this.state.peopleDataSource}
@@ -90,7 +89,14 @@ export default class PeopleIndexScreen extends Component<{}> {
   }
 
   navigateToPerson(person) {
-    this.props.navigator.push({component: PersonShowScreen, title:"PersonShow", passProps:{person:person} })
+    const nextScreen = {
+      component: PersonShowScreen,
+      title:"Person Show",
+      passProps:{person:person}
+    }
+    // Automatiquement, quand le NavigatorIOS a instancié notre PeopleIndexScreen,
+    // il a mis une référence à lui même dans les props de celui-ci.
+    this.props.navigator.push(nextScreen)
   }
 }
 
