@@ -10,7 +10,8 @@ import {
   StyleSheet,
   Text,
   View,
-  ListView
+  ListView,
+  TouchableOpacity
 } from 'react-native';
 import ViewContainer from './app/components/ViewContainer';
 import StatusBarBackground from './app/components/StatusBarBackground';
@@ -30,7 +31,34 @@ const people = [
   {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
   {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
   {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
-  {firstName: "ginette", lastName: 'Renaud', roomNumber: 1 }
+  {firstName: "ginette", lastName: 'Renaud', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "PHIL", lastName: 'Carphin', roomNumber: 1 },
+  {firstName: "Thom", lastName: 'Dion', roomNumber: 1 },
+  {firstName: "Paul", lastName: 'Carphin', roomNumber: 1 },
 ]
 
 export default class App extends Component<{}> {
@@ -47,7 +75,7 @@ export default class App extends Component<{}> {
       <ViewContainer>
         <StatusBarBackground style={{backgroundColor: "blue"}}/>
         <ListView
-          style={{marginTop: 100}}
+          style={styles.listViewStyle}
           dataSource={this.state.peopleDataSource}
           renderRow={(person) => { return this._renderPersonRow(person)}} />
       </ViewContainer>
@@ -56,12 +84,14 @@ export default class App extends Component<{}> {
 
   _renderPersonRow(person) {
     return (
-      <ChevronListItem>
-        <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
-          <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
-          <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
-        </View>
-      </ChevronListItem>
+      <TouchableOpacity onPress={(event) => console.log("TouchableOpacity onPress()")}>
+        <ChevronListItem>
+          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+            <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
+            <Text style={styles.lastName}>{_.capitalize(person.lastName)}</Text>
+          </View>
+        </ChevronListItem>
+      </TouchableOpacity>
     )
   }
 }
@@ -74,6 +104,9 @@ ChevronListItem = ({children}) => (
 )
 
 const styles = StyleSheet.create({
+  listViewStyle:{
+
+  },
   personRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
