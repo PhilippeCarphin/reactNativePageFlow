@@ -16,7 +16,7 @@ export default class App extends Component<{}> {
       navigator: navigator
     }
 
-    switch(route.ident) {
+    switch(route.title) {
       case "PeopleIndex":
         return (<PeopleIndexScreen {...globalNavigatorProps} />)
       case "PeopleShow":
@@ -25,19 +25,14 @@ export default class App extends Component<{}> {
         return (<PeopleIndexScreen {...globalNavigatorProps} />)
     }
   }
+
   render() {
     return (
         <NavigatorIOS
-          initialRoute={{component: PersonShowScreen, title: 'My Initial State', passProps: {person: {firstName: 'Phil', lastName: 'Carphin'}} }}
+          initialRoute={{component: PeopleIndexScreen, title: 'PeopleIndex', passProps: {person: {firstName: 'Phil', lastName: 'Carphin'}} }}
           ref="appNavigator"
           style={{flex: 1}}
           renderScene={this._renderScene} />
     )
   }
 }
-
-const styles = {
-  navigatorStyle: {
-
-  }
-};

@@ -14,7 +14,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 import ViewContainer from '../components/ViewContainer';
-import StatusBarBackground from '../components/StatusBarBackground';
+import StatusBarBackground from '../components/StatusBarBackground'
+import PersonShowScreen from './PersonShowScreen'
 import _ from 'lodash'
 // DId this after npm installing
 // react-native link react-native-vector-icons
@@ -77,7 +78,7 @@ export default class PeopleIndexScreen extends Component<{}> {
 
   _renderPersonRow(person) {
     return (
-      <TouchableOpacity onPress={(event) => console.log("TouchableOpacity onPress()")}>
+      <TouchableOpacity onPress={(event) => this.navigateToPerson(person)}>
         <ChevronListItem>
           <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
             <Text style={styles.firstName}>{_.capitalize(person.firstName)} </Text>
@@ -86,6 +87,10 @@ export default class PeopleIndexScreen extends Component<{}> {
         </ChevronListItem>
       </TouchableOpacity>
     )
+  }
+
+  navigateToPerson(person) {
+    this.props.navigator.push({component: PersonShowScreen, title:"PersonShow", passProps:{person:person} })
   }
 }
 
